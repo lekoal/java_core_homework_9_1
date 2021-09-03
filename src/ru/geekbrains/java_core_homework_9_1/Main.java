@@ -8,10 +8,12 @@ public class Main {
         try {
             System.out.println("Sum of array's elements: " + arrCheck(arrEntry()));
         } catch (MyArraySizeException e) {
-            System.out.print("Exception: ");
-            e.message();
+            System.out.println("MyArraySizeException error:");
+            e.printStackTrace();
+
         } catch (MyArrayDataException e) {
-            System.out.println("Program is closing");
+            System.out.println("MyArrayDataException error:");
+            e.printStackTrace();
         }
 
     }
@@ -23,10 +25,10 @@ public class Main {
                 for (int j = 0; j < myArray.length; j++) {
                     if ((myArray[i][j]).matches("[-+]?\\d+")) { // Условные выражения
                         sum += Integer.parseInt(myArray[i][j]);
-                    } else throw new MyArrayDataException(i, j);
+                    } else throw new MyArrayDataException("Cant convert symbol to int. Error in cell [" + i + ":" + j + "]");
                 }
             }
-        } else throw new MyArraySizeException();
+        } else throw new MyArraySizeException("Array size must be 4x4!");
         return sum;
     }
 
